@@ -13,7 +13,8 @@ public class Main {
                     Возможные операции для ввода:\s
                     1. добавить
                     2. показать
-                    3. удалить""");
+                    3. удалить
+                    4. поиск""");
             String input = scanner.nextLine();
             if (input.equals("end")) {
                 System.out.println("Программа завершена");
@@ -33,6 +34,9 @@ public class Main {
                 case (3):
                     productList(list);
                     removingIndex(scanner, list);
+                    break;
+                case (4):
+                    findingItems(scanner, list);
                     break;
                 default:
                     System.out.println("Такой операции нет");
@@ -71,6 +75,26 @@ public class Main {
         }
         productList(list);
     }
+
+    public static void findingItems(Scanner scanner, List<String> list) {
+        System.out.println("Введите текст для поиска: ");
+        String pr = scanner.nextLine();
+        try {
+           int index = Integer.parseInt(pr) - 1;
+           list.get(Integer.parseInt(String.valueOf(index)) - 1);
+        } catch (Exception e) {
+            String itemLower;
+            String queryLower = pr.toLowerCase();
+            for (int i = 0; i < list.size(); i++) {
+                itemLower = (list.get(i).toLowerCase());
+                if (itemLower.contains(queryLower)) {
+                    System.out.println("Найдено:");
+                    System.out.println((list.indexOf(list.get(i)) + 1) + " " + list.get(i));
+                }
+            }
+        }
+    }
 }
+
 
 
