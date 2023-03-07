@@ -8,10 +8,12 @@ public class Main {
         List<String> list = new ArrayList<>();
 
         while (true) {
-            System.out.println("Введите номер операции. \nВозможные операции для ввода: \n" +
-                    "1. добавить\n" +
-                    "2. показать\n" +
-                    "3. удалить");
+            System.out.println("""
+                    Введите номер операции.\s
+                    Возможные операции для ввода:\s
+                    1. добавить
+                    2. показать
+                    3. удалить""");
             String input = scanner.nextLine();
             if (input.equals("end")) {
                 System.out.println("Программа завершена");
@@ -55,15 +57,20 @@ public class Main {
         }
         System.out.println("Итого в списке покупок: " + list.size());
     }
+
     public static void removingIndex(Scanner scanner, List<String> list) {
         System.out.println("Какую позицию хотите удалить? Введите номер или название:");
         productList(list);
         String input = scanner.nextLine();
-        list.remove(Integer.parseInt(input) - 1);
-        System.out.println("Покупка " + input+ " удалена");
+        try {
+            int index = Integer.parseInt(input) - 1;
+            list.remove(index);
+        } catch (Exception e) {
+            list.remove(input);
+            System.out.println("Покупка " + "<" + input + ">" + " удалена");
+        }
         productList(list);
-
     }
-
 }
+
 
